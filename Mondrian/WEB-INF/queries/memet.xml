@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<Schema name="warehouse_aw">
+<!--
+  == This software is subject to the terms of the Eclipse Public License v1.0
+  == Agreement, available at the following URL:
+  == http://www.eclipse.org/legal/epl-v10.html.
+  == You must accept the terms of that agreement to use this software.
+  ==
+  == Copyright (C) 2000-2005 Julian Hyde
+  == Copyright (C) 2005-2011 Pentaho and others
+  == All Rights Reserved.
+  -->
+
+<!-- Shared dimensions -->
+
+  
+
+<!-- Sales -->
+<Cube name="Jual" defaultMeasure="Amount">
+  <!-- Use annotations to provide translations of this cube's caption and
+       description into German and French. Use of annotations in this manner is
+       experimental and unsupported; just for testing right now. -->
+  
+  <Table name="sales_fact"/>
+
+   <Dimension name="Time" foreignKey="time_id">
+    <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="time_id">
+      <Table name="time_dim" />
+      <Level name="Year" column="year" type="Numeric" uniqueMembers="true"
+          levelType="TimeYears"/>
+      <Level name="Month" column="month" uniqueMembers="false" type="Numeric"
+          levelType="TimeMonths"/>
+      <Level name="Date" column="day" uniqueMembers="false" type="Numeric"
+          levelType="TimeDays"/>
+    </Hierarchy>
+   
+  </Dimension>
+  
+  <Dimension name="Territory" foreignKey ="territory_id">
+      <Hierarchy hasAll="true" allMemberName="All Territories" primaryKey ="territory_id">
+      <Table name="territory_dim"/>
+      <Level name="Territory Group" column="territory_group"/>
+      <Level name="Territory Name" column="territory_name"/>
+      </Hierarchy>
+  </Dimension>
+
+ 
+ 
+  <Dimension name="Product" foreignKey = "product_id">
+    <Hierarchy hasAll="true" allMemberName="All Products" primaryKey ="product_id">
+      <Table name="product_dim" />
+      <Level name="Category" column="product_category" />
+      <Level name="Subcategory" column="product_subcategory" />
+      <Level name="Product" column="product_name"/>
+    </Hierarchy>
+  </Dimension>
+  
+
+  <Measure name="orderqty" column="orderqty" aggregator="sum"
+      formatString="Standard"/>
+  <Measure name="totaldue" column="totaldue" aggregator="sum"
+      formatString="Standard"/>
+  
+  
+  
+  
+  
+</Cube>
+
+
+
+</Schema>
