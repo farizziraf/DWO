@@ -26,7 +26,7 @@ C. Run Mondrian / Menjalankan Mondrian
 1. Buka XAMPP
 2. Nyalakan Apache, MySql, dan Tomcat
 3. Tekan admin pada tomcat.
-4. Akses “http://localhost:8080/mondrian/index.html”
+4. Akses “http://localhost:8080/mondrian/index.html” pada Web Browser
 (sesuaikan port dengan port yang kalian gunakan untuk Tomcat di XAMPP)
 5. Akan muncul di paling bawah sebuah hyperlink menuju cube OLAP dari hasil ETL 
 
@@ -41,7 +41,7 @@ D. Run Dashboard
 
 1. Buka XAMPP 
 2. Run Apache, MySql, dan Tomcat
-3. Buka Website dan ketikan localhost/'Nama Folder Dashboard yang disimpan'
+3. Buka pada Web Browser dan ketikan localhost/'Nama Folder Dashboard yang disimpan'
 
 -------------------------------------------
 
