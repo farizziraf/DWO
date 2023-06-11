@@ -40,7 +40,7 @@ C. Install Dashboard
 D. Run Dashboard
 
 1. Buka XAMPP 
-2. Run Apache, MySql, Tomcat
+2. Run Apache, MySql, dan Tomcat
 3. Buka Website dan ketikan localhost/'Nama Folder Dashboard yang disimpan'
 
 -------------------------------------------
