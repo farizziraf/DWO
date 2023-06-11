@@ -220,14 +220,14 @@ include('koneksi.php');
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white"
-                                href="javascript:;">Order Quantity</a></li>
+                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Order
+                                Quantity</a></li>
                         <li class="breadcrumb-item text-sm text-white active" aria-current="page">Chart 4</li>
                     </ol>
                     <h6 class="font-weight-bolder text-white mb-0">Chart 4</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                    
+
                     <ul class="navbar-nav  justify-content-end">
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
@@ -238,7 +238,7 @@ include('koneksi.php');
                                 </div>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </div>
             </div>
@@ -304,7 +304,7 @@ include('koneksi.php');
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Sold products</p>
                                         <h5 class="font-weight-bolder">
-                                        266
+                                            266
                                         </h5>
                                         <p class="mb-0">
                                             <span class="text-success text-sm font-weight-bolder"></span>
@@ -330,10 +330,10 @@ include('koneksi.php');
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales days</p>
                                         <h5 class="font-weight-bolder">
-                                        1124
+                                            1124
                                         </h5>
                                         <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder"></span> 
+                                            <span class="text-success text-sm font-weight-bolder"></span>
                                             Dari 2001 - 2004
                                         </p>
                                     </div>
@@ -349,29 +349,31 @@ include('koneksi.php');
                     </div>
                 </div>
             </div>
-        
-            
-        
-        <div class="row mt-4">
+
+
+
+            <div class="row mt-4">
                 <div class="col-lg-12 mb-lg-12 mb-4">
                     <div class="card z-index-2 h-100">
                         <div class="card-header pb-0 pt-3 bg-transparent">
                             <h6 class="text-capitalize text-center">Bar Chart</h6>
-<p class="text-sm mb-0" style="text-align: center;">
-    <span class="font-weight-bold">Apa yang merupakan Top 10 produk dengan order quantity terbanyak pada territory "Europe" pada tahun 2004?</span> 
-</p>                            
+                            <p class="text-sm mb-0" style="text-align: center;">
+                                <span class="font-weight-bold">Apa yang merupakan Top 10 produk dengan order quantity
+                                    terbanyak pada territory "Europe" pada tahun 2004?</span>
+                            </p>
                         </div>
                         <div class="card-body p-3">
-                        <div class="chart">
-                            <canvas id="chart-bar" class="chart-canvas" style="width: 100%; height: 500px;"></canvas>
+                            <div class="chart">
+                                <canvas id="chart-bar" class="chart-canvas"
+                                    style="width: 100%; height: 500px;"></canvas>
+                            </div>
                         </div>
+                    </div>
                 </div>
-            </div>
-    </div>
 
 
     </main>
-    
+
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
@@ -379,10 +381,10 @@ include('koneksi.php');
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
     <script>
-    var ctx = document.getElementById('chart-bar').getContext('2d');
+        var ctx = document.getElementById('chart-bar').getContext('2d');
 
-    <?php
-    $query = "SELECT p.product_name, SUM(fp.orderqty) AS total_order_qty 
+        <?php
+        $query = "SELECT p.product_name, SUM(fp.orderqty) AS total_order_qty 
               FROM sales_fact fp 
               JOIN product_dim p ON fp.product_id = p.product_id 
               JOIN territory_dim t ON fp.territory_id = t.territory_id 
@@ -391,71 +393,71 @@ include('koneksi.php');
               GROUP BY p.product_name 
               ORDER BY total_order_qty DESC 
               LIMIT 10";
-    $result = mysqli_query($conn, $query);
+        $result = mysqli_query($conn, $query);
 
-    $products = [];
-    $orderQuantities = [];
+        $products = [];
+        $orderQuantities = [];
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $products[] = $row['product_name'];
-        $orderQuantities[] = $row['total_order_qty'];
-    }
+        while ($row = mysqli_fetch_assoc($result)) {
+            $products[] = $row['product_name'];
+            $orderQuantities[] = $row['total_order_qty'];
+        }
 
-    // Generate random colors for each dataset
-    $colors = [];
-    for ($i = 0; $i < count($products); $i++) {
-        $colors[] = "rgba(" . rand(0, 255) . ", " . rand(0, 255) . ", " . rand(0, 255) . ", 0.8)";
-    }
+        // Generate random colors for each dataset
+        $colors = [];
+        for ($i = 0; $i < count($products); $i++) {
+            $colors[] = "rgba(" . rand(0, 255) . ", " . rand(0, 255) . ", " . rand(0, 255) . ", 0.8)";
+        }
 
-    $data = [
-        'labels' => $products,
-        'datasets' => [
-            [
-                'label' => 'Order Quantity',
-                'data' => $orderQuantities,
-                'backgroundColor' => $colors,
-                'borderWidth' => 1
+        $data = [
+            'labels' => $products,
+            'datasets' => [
+                [
+                    'label' => 'Order Quantity',
+                    'data' => $orderQuantities,
+                    'backgroundColor' => $colors,
+                    'borderWidth' => 1
+                ]
             ]
-        ]
-    ];
-    ?>
+        ];
+        ?>
 
-    var data = <?php echo json_encode($data); ?>;
+        var data = <?php echo json_encode($data); ?>;
 
-    var options = {
-        responsive: true,
-        plugins: {
-            title: {
-                display: true,
-                text: 'Top 10 Products with Highest Order Quantity (Europe, 2004)',
-                font: {
-                    size: 16
-                }
-            }
-        },
-        scales: {
-            x: {
+        var options = {
+            responsive: true,
+            plugins: {
                 title: {
                     display: true,
-                    text: 'Product'
+                    text: 'Top 10 Products with Highest Order Quantity (Europe, 2004)',
+                    font: {
+                        size: 16
+                    }
                 }
             },
-            y: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Order Quantity'
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Product'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Order Quantity'
+                    }
                 }
             }
-        }
-    };
+        };
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: options
-    });
-</script>
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    </script>
 
 
 

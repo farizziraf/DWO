@@ -358,7 +358,8 @@ include('koneksi.php');
                         <div class="card-header pb-0 pt-3 bg-transparent">
                             <h6 class="text-capitalize text-center">Bar Chart</h6>
                             <p class="text-sm mb-0" style="text-align: center;">
-                                <span class="font-weight-bold">Berapa total due dari setiap sub kategori produk pada kategori 'Clothing' pada bulan Juni 2004?</span>
+                                <span class="font-weight-bold">Berapa total due dari setiap sub kategori produk pada
+                                    kategori 'Clothing' pada bulan Juni 2004?</span>
 
 
                             </p>
@@ -374,7 +375,7 @@ include('koneksi.php');
 
 
     </main>
-    
+
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
@@ -382,75 +383,75 @@ include('koneksi.php');
     <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
     <script src="assets/js/plugins/chartjs.min.js"></script>
     <script>
-    var ctx = document.getElementById('chart-bar').getContext('2d');
-    
-    <?php
-    $query = "SELECT p.product_subcategory, SUM(sf.totaldue) AS total_due FROM sales_fact sf JOIN product_dim p ON sf.product_id = p.product_id JOIN time_dim d ON sf.time_id = d.time_id JOIN product_dim p2 ON p2.product_category = 'Clothing' AND p.product_subcategory = p2.product_subcategory WHERE d.year = 2004 AND d.month = 6 GROUP BY p.product_subcategory ORDER BY total_due DESC";
-    $result = mysqli_query($conn, $query);
+        var ctx = document.getElementById('chart-bar').getContext('2d');
 
-    $labels = array();
-    $totalDueData = array();
+        <?php
+        $query = "SELECT p.product_subcategory, SUM(sf.totaldue) AS total_due FROM sales_fact sf JOIN product_dim p ON sf.product_id = p.product_id JOIN time_dim d ON sf.time_id = d.time_id JOIN product_dim p2 ON p2.product_category = 'Clothing' AND p.product_subcategory = p2.product_subcategory WHERE d.year = 2004 AND d.month = 6 GROUP BY p.product_subcategory ORDER BY total_due DESC";
+        $result = mysqli_query($conn, $query);
 
-    while ($row = mysqli_fetch_assoc($result)) {
-        $labels[] = $row['product_subcategory'];
-        $totalDueData[] = $row['total_due'];
-    }
+        $labels = array();
+        $totalDueData = array();
 
-    $data = [
-        'labels' => $labels,
-        'datasets' => [
-            [
-                'label' => 'Total Due',
-                'data' => $totalDueData,
-                'backgroundColor' => [
-                    'rgba(17, 140, 239, 0.8)',
-                    'rgba(45, 206, 158, 0.8)',
-                    'rgba(251, 115, 64, 0.8)',
-                    'rgba(245, 66, 80, 0.8)',
-                    'rgba(111, 105, 228, 0.8)'
-                ],
-                'borderWidth' => 1
+        while ($row = mysqli_fetch_assoc($result)) {
+            $labels[] = $row['product_subcategory'];
+            $totalDueData[] = $row['total_due'];
+        }
+
+        $data = [
+            'labels' => $labels,
+            'datasets' => [
+                [
+                    'label' => 'Total Due',
+                    'data' => $totalDueData,
+                    'backgroundColor' => [
+                        'rgba(17, 140, 239, 0.8)',
+                        'rgba(45, 206, 158, 0.8)',
+                        'rgba(251, 115, 64, 0.8)',
+                        'rgba(245, 66, 80, 0.8)',
+                        'rgba(111, 105, 228, 0.8)'
+                    ],
+                    'borderWidth' => 1
+                ]
             ]
-        ]
-    ];
-    ?>
+        ];
+        ?>
 
-    var data = <?php echo json_encode($data); ?>;
-    
-    var options = {
-        responsive: true,
-        scales: {
-            x: {
-                beginAtZero: true,
-                title: {
-                    display: true,
-                    text: 'Product Subcategory'
+        var data = <?php echo json_encode($data); ?>;
+
+        var options = {
+            responsive: true,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Product Subcategory'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Total Due'
+                    }
                 }
             },
-            y: {
+            plugins: {
                 title: {
                     display: true,
-                    text: 'Total Due'
+                    text: 'Total Due Comparison (Year 2001)',
+                    font: {
+                        size: 16
+                    }
                 }
             }
-        },
-        plugins: {
-            title: {
-                display: true,
-                text: 'Total Due Comparison (Year 2001)',
-                font: {
-                    size: 16
-                }
-            }
-        }
-    };
+        };
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: options
-    });
-</script>
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    </script>
 
 
 

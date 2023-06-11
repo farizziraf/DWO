@@ -360,7 +360,8 @@ include('koneksi.php');
                         <div class="card-header pb-0 pt-3 bg-transparent">
                             <h6 class="text-capitalize text-center">Bar Chart</h6>
                             <p class="text-sm mb-0" style="text-align: center;">
-                                <span class="font-weight-bold">Berapa perbandingan total due dari produk "AWC Logo Cap" dan "LL Road Frame - Red, 52" pada tahun 2001?</span>
+                                <span class="font-weight-bold">Berapa perbandingan total due dari produk "AWC Logo Cap"
+                                    dan "LL Road Frame - Red, 52" pada tahun 2001?</span>
 
 
                             </p>
@@ -376,7 +377,7 @@ include('koneksi.php');
 
 
     </main>
-    
+
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
@@ -418,14 +419,14 @@ include('koneksi.php');
         var options = {
             responsive: true,
             plugins: {
-            title: {
-                display: true,
-                text: 'Total Revenue Comparison (Year 2001)',
-                font: {
-                    size: 16
+                title: {
+                    display: true,
+                    text: 'Total Revenue Comparison (Year 2001)',
+                    font: {
+                        size: 16
+                    }
                 }
-            }
-        },
+            },
             scales: {
                 x: {
                     title: {

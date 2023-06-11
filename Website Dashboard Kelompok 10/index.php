@@ -303,7 +303,7 @@ include('koneksi.php');
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Sold products</p>
                                         <h5 class="font-weight-bolder">
-                                        266
+                                            266
                                         </h5>
                                         <p class="mb-0">
                                             <span class="text-success text-sm font-weight-bolder"></span>
@@ -329,10 +329,10 @@ include('koneksi.php');
                                     <div class="numbers">
                                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales days</p>
                                         <h5 class="font-weight-bolder">
-                                        1124
+                                            1124
                                         </h5>
                                         <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder"></span> 
+                                            <span class="text-success text-sm font-weight-bolder"></span>
                                             Dari 2001 - 2004
                                         </p>
                                     </div>
